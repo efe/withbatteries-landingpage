@@ -14,6 +14,10 @@
 			color: #f1ebc9;
 			background-color: #140d0d;
 			width: 800px;
+			overflow: hidden;
+
+			    margin: 0;
+    height: 100vh;
 		}
 
 		.contactinfo {
@@ -34,6 +38,15 @@
 		  height: 100vh;
 
 		}
+
+.pointer {
+    width: 600px; /* Increased size */
+    height: 600px; /* Increased size */
+    border-radius: 50%;
+    position: absolute;
+    background-color: #f1ebc9;
+    pointer-events: none; /* Ensure the pointer doesn't interfere with mouse events */
+}
 	</style>
 </head>
 <body>
@@ -44,6 +57,37 @@
 	    <span id="feelfree">feel free to reach out,</span>
 	    <div class="contactinfo">efe@withbatteries.com</div>
 	  </div>
+	  <div class="pointer"></div>
 	</div>
+	<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+    const pointer = document.querySelector('.pointer');
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight / 2;
+    let currentX = targetX;
+    let currentY = targetY;
+
+    function lerp(start, end, t) {
+        return start + (end - start) * t;
+    }
+
+    function animate() {
+        currentX = lerp(currentX, targetX, 0.1); // Adjust the 0.1 value to change the speed of lerp
+        currentY = lerp(currentY, targetY, 0.1);
+
+        // Adjust the translation so the ball is centered over the mouse pointer
+        pointer.style.transform = `translate(${currentX - 50}px, ${currentY - 50}px)`; // Subtract half of the ball's size
+
+        requestAnimationFrame(animate);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+    });
+
+    animate();
+});
+	</script>
 </body>
 </html>
