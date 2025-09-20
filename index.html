@@ -1,87 +1,57 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>with batteries</title>
-	<meta name="description" content="product-minded, creative and perfectionist development agency based in the Netherlands">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-	<style type="text/css">
-		body {
-			font-family: "IBM Plex Mono", monospace;
-			color: #f1ebc9;
-			background-color: #140d0d;
-			width: 800px;
-			overflow: hidden;
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Tailwind + DaisyUI (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <title>with batteries</title>
+    <style type="text/css">
+        @import "tailwindcss";
+        	@plugin "daisyui" {
+        	  themes: all;
+        	}
+          	body {
+        			font-family: "IBM Plex Mono", monospace;
+            	}
+    </style>
+    <script>
+        const themes = [
+          "light","dark","cupcake","bumblebee","emerald","corporate",
+          "synthwave","retro","cyberpunk","valentine","halloween",
+          "garden","forest","aqua","lofi","pastel","fantasy",
+          "wireframe","black","luxury","dracula","cmyk","autumn",
+          "business","acid","lemonade","night","coffee","winter"
+        ];
+    
+        function randomTheme() {
+          const theme = themes[Math.floor(Math.random() * themes.length)];
+          document.body.setAttribute("data-theme", theme);
+        }
+    
+        // change every 1 second
+        setInterval(randomTheme, 1000);
+    </script>
 
-			    margin: 0;
-    height: 100vh;
-		}
-		.contactinfo {
-		  color:#fff;
-		  background: none;
-		}
-		.title {
-		  font-size: 4rem;
-		  background: none;
-		  font-weight: bold;
-		}
-		.container {
-		  padding: 2rem;
-		  font-size: 3rem;
-		  text-align: left;
-		  height: 100vh;
-		}
-
-.pointer {
-    width: 600px; /* Increased size */
-    height: 600px; /* Increased size */
-    border-radius: 50%;
-    position: absolute;
-    background-color: #f1ebc9;
-    pointer-events: none; /* Ensure the pointer doesn't interfere with mouse events */
-}
-	</style>
 </head>
-<body>
-	<div class="container">
-	  <div id="textblock">
-	    <div class="title">with batteries</div>
-	    <span id="description">product-minded, creative and perfectionist software house in the netherlands</span><br><br>
-	  </div>
-	  <div class="pointer"></div>
-	</div>
-	<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', () => {
-    const pointer = document.querySelector('.pointer');
-    let targetX = window.innerWidth / 2;
-    let targetY = window.innerHeight / 2;
-    let currentX = targetX;
-    let currentY = targetY;
 
-    function lerp(start, end, t) {
-        return start + (end - start) * t;
-    }
-
-    function animate() {
-        currentX = lerp(currentX, targetX, 0.1); // Adjust the 0.1 value to change the speed of lerp
-        currentY = lerp(currentY, targetY, 0.1);
-
-        // Adjust the translation so the ball is centered over the mouse pointer
-        pointer.style.transform = `translate(${currentX - 50}px, ${currentY - 50}px)`; // Subtract half of the ball's size
-
-        requestAnimationFrame(animate);
-    }
-
-    document.addEventListener('mousemove', (e) => {
-        targetX = e.clientX;
-        targetY = e.clientY;
-    });
-
-    animate();
-});
-	</script>
+<body data-theme="dracula" class="min-h-screen bg-base-200 p-6" hx-get="/" hx-trigger="every 1s" hx-swap="outerHTML">
+    <div class="container mx-auto">
+        <div class="card w-full md:w-full lg:w-1/2">
+            <div class="card-body">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">with batteries</h1>
+                <p class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-relaxed text-secondary">
+                    is a digital product house that currently builds <a class="underline" href="https://yesglot.com">yesglot</a>.
+                </p>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
